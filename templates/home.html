@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Hello there {{ .name }}</h1>
+        <h1 class="text-2xl font-bold mb-2">Book Details</h1>
+        <a href="/create" style="color:blue">Create new entries</a>
+        {{range $i,$book := .entry}}
+        <div class="bg-gray-100 rounded-lg p-4 mb-4">
+            <div class="border border-gray-300 rounded-md p-4">
+                <h2 class="text-xl font-bold mb-2">Title: {{ $book.Title }}</h2>
+                <h2 class="text-lg">Author: {{ $book.Author.Name }}</h2>
+                <h2 class="text-lg">Author ID: {{ $book.AuthorID }}</h2>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</body>
+
+
+
+<a href="/logout">Click here to logout</a>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Author and Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css">
+</head>
+
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Create Author and Book</h1>
+
+        <!-- Author Form -->
+        <form action="/createAuth" method="POST" class="mb-8">
+            <h2 class="text-xl font-bold mb-2">Author Information</h2>
+            <div class="mb-4">
+                <label for="authorName" class="block mb-2 font-medium">Author Name:</label>
+                <input type="text" id="authorName" name="authorName" class="w-full border-gray-300 rounded-md p-2">
+                {{if .message}}
+                <p class="text-red-500 text-center mt-3">{{ .message }}</p>
+                {{ end }}
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Create Author</button>
+        </form>
+
+        <!-- Book Form -->
+<!-- Book Form -->
+<form action="/createBook" method="POST">
+    <h2 class="text-xl font-bold mb-2">Book Information</h2>
+    <div class="mb-4">
+        <label for="bookTitle" class="block mb-2 font-medium">Book Title:</label>
+        <input type="text" id="bookTitle" name="bookTitle" class="w-full border-gray-300 rounded-md p-2">
+    </div>
+    <div class="relative">
+        <select
+            class="appearance-none w-full border-gray-300 rounded-md px-3 py-2 pr-8 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            name="authorID">
+            <option value="" selected disabled>Select an author</option>
+            {{ range $index, $author := .authors }}
+            <option value="{{ $author.ID }}">{{ $author.Name }}</option>
+            {{ end }}
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+    </div>
+
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Create Book</button>
+        </form>
+    </div>
+</body>
+
+</html>
